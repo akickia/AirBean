@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import ProductCardCart from "../Components/ProductCardCart"
+import Login from "../Components/Login"
+import { useNavigate } from "react-router-dom"
 
 export default function CartGuest() {
+  const navigate = useNavigate()
   const [products, setProducts] = useState([])
   const [calcProducts, setCalcProducts] = useState([])
   const [result, setResult] = useState()
@@ -43,15 +46,12 @@ export default function CartGuest() {
   }
 
   function calculateSum() {
-    console.log(calcProducts)
     let sum = []
     calcProducts.map((item) => {
       let cost = item.price * item.no
       sum.push(cost)
     })
-    console.log(sum)
     setResult(sum.reduce((acc, current) => acc + current, 0))
-    console.log(result)
   }
 
 useEffect(() => {
@@ -66,8 +66,35 @@ useEffect(() => {
   calculateSum()
 }, [calcProducts])
 
+async function checkLoggedIn() {
+  const token = localStorage.getItem("token")
+  const user = localStorage.getItem("userId")
+  const userId = {
+    _id: user,
+  }
+  const response = await fetch("http://localhost:8000/api/cart/sendorder", {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token
+    },
+    body: JSON.stringify(userId)
+  })
+  const data = await response.json();
+  if (data.success) {
+    navigate("/order/confirmation")
+  } else {
+    navigate("/error")
+  }
+}
+
+function handleBtn() {
+  checkLoggedIn()
+}
+
   return (
     <section className='order-view'>
+      <Login />
       <h1>Din beställning</h1>
       <section className='cart-container'>
         {productsEl}
@@ -79,7 +106,7 @@ useEffect(() => {
         </div>
         <p>inkl moms + drönarleverans</p>
       </section>
-      <button className='orderBtn'>Take my money!</button>
+      <button className='orderBtn' onClick={() => {handleBtn()}}>Take my money!</button>
     </section>
   )
 }
