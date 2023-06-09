@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Work+Sans&display=swap');
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 1280px;
+  width: 100vw;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color:  #F3E4E1;
+  font-family: 'PT Serif', serif;
+}
+
+p {
+  font-family: 'Work Sans', sans-serif;
+}
+
+article {
+  min-height: 100vh;
+  padding: 0 2rem
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.4375rem;
+  margin-bottom: .25rem;
+}
+
+.product-text {
+  font-size: .75rem;
+  margin-top: .25rem;
+}
+
+.navigation {
+  background-color: black;
+  color: white;
+  text-align: center;  
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0
+}
+
+.navigation ul a {
+  color: white;
+  padding: 2rem;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 2.375rem;
+}
+
+.top-btn {
+  border-radius: 50%;
+  margin: 1rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cartNo{
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: red;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  border-radius: 50%;
+  text-align: center;
+  color: white
+}
+
+.btns-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-image: url("./assets/header.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 9rem;
+  position: relative;
+}
+.top-btn-right {
+  background-color: black;
+  overflow: hidden;
+  color: white;
+}
+
+.top-btn-add {
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  align-self: center;
+}
+
+.products {
+  padding: 1rem
+}
+
+.card {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.card > h2 {
+  margin-left: auto;
+}
+
+.order-view {
+  padding: 1rem;
+  background-color: white;
+}
+.cartCard {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem
+}

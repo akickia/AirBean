@@ -1,0 +1,61 @@
+
+import up from "../assets/arrowUp.png"
+import down from "../assets/arrowDown.png"
+import { useEffect, useState } from "react"
+
+export default function ProductCardCart({item, calcItems}) {
+  const [noOfItems, setNoOfItems] = useState(item.no)
+
+  async function addToCart(item) {
+    const productId = {
+      id: item.id,
+    }
+    console.log(productId)
+    await fetch("http://localhost:8000/api/cart/add", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(productId)
+    })
+    setNoOfItems(prev => prev + 1)
+    calcItems()
+
+  }
+
+  async function removeFromCart(item) {
+    const productId = {
+      id: item.id,
+    }
+    console.log(productId)
+    await fetch("http://localhost:8000/api/cart/remove", {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(productId)
+    })
+    setNoOfItems(prev => prev -1)
+    calcItems()
+
+  }
+
+
+  return (
+    <>
+    {noOfItems > 0 ? 
+    <section className="cartCard">
+      
+      <div>
+        <h2>{item.title}</h2>
+        <p>{item.price}</p>
+      </div>
+      <div>
+        <img src={up} onClick={() => {addToCart(item)}}/>
+        <p>{noOfItems}</p>
+        <img src={down} onClick={() => {removeFromCart(item)}}/>
+      </div> 
+    </section> : ""}
+    </>
+  )
+}
