@@ -1,9 +1,9 @@
 
 import up from "../assets/arrowUp.png"
 import down from "../assets/arrowDown.png"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-export default function ProductCardCart({item, calcItems}) {
+export default function ProductCardCart({item, calcItems, updateCalcProduct}) {
   const [noOfItems, setNoOfItems] = useState(item.no)
 
   async function addToCart(item) {
@@ -19,7 +19,7 @@ export default function ProductCardCart({item, calcItems}) {
       body: JSON.stringify(productId)
     })
     setNoOfItems(prev => prev + 1)
-    calcItems()
+    updateCalcProduct(item.id, noOfItems + 1)
 
   }
 
@@ -36,7 +36,7 @@ export default function ProductCardCart({item, calcItems}) {
       body: JSON.stringify(productId)
     })
     setNoOfItems(prev => prev -1)
-    calcItems()
+    updateCalcProduct(item.id, noOfItems -1)
 
   }
 
@@ -45,7 +45,6 @@ export default function ProductCardCart({item, calcItems}) {
     <>
     {noOfItems > 0 ? 
     <section className="cartCard">
-      
       <div>
         <h2>{item.title}</h2>
         <p>{item.price}</p>

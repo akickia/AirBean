@@ -4,6 +4,8 @@ import ProductCardCart from "../Components/ProductCardCart"
 export default function CartGuest() {
   const [products, setProducts] = useState([])
   const [calcProducts, setCalcProducts] = useState([])
+  const [result, setResult] = useState()
+  
 
   async function fetchProducts() {
     let productsInCart = await fetch('http://localhost:8000/api/cart/order')
@@ -13,7 +15,7 @@ export default function CartGuest() {
   }
 
   let productsEl = calcProducts && calcProducts.map((item, i) => {
-    return item && <ProductCardCart item={item} key={i} calcItems={calcItems} calcProducts={calcProducts} />
+    return item && <ProductCardCart item={item} key={i} calcItems={calcItems} updateCalcProduct={updateCalcProduct} calcProducts={calcProducts} />
   })
 
   
@@ -28,9 +30,28 @@ export default function CartGuest() {
       return acc;
     }, []);
     setCalcProducts(updatedCalcProducts);
-    productsEl = calcProducts && calcProducts.map((item, i) => {
-      return item && <ProductCardCart item={item} key={i} calcItems={calcItems} calcProducts={calcProducts} />
+  }
+
+  function updateCalcProduct(itemId, newNo) {
+    const updatedCalcProducts = calcProducts.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, no: newNo };
+      }
+      return item;
+    });
+    setCalcProducts(updatedCalcProducts);
+  }
+
+  function calculateSum() {
+    console.log(calcProducts)
+    let sum = []
+    calcProducts.map((item) => {
+      let cost = item.price * item.no
+      sum.push(cost)
     })
+    console.log(sum)
+    setResult(sum.reduce((acc, current) => acc + current, 0))
+    console.log(result)
   }
 
 useEffect(() => {
@@ -41,6 +62,10 @@ useEffect(() => {
   calcItems()
 }, [products])
 
+useEffect(() => {
+  calculateSum()
+}, [calcProducts])
+
   return (
     <section className='order-view'>
       <h1>Din beställning</h1>
@@ -50,7 +75,7 @@ useEffect(() => {
       <section className='order-total'>
         <div>
           <h2>Total</h2>
-          <h2></h2>
+          <h2>{result}</h2>
         </div>
         <p>inkl moms + drönarleverans</p>
       </section>
@@ -58,37 +83,3 @@ useEffect(() => {
     </section>
   )
 }
-
-
-  // function calcItems() {
-  //   console.log(products)
-  //   let noOfItems = 1
-  //   products && products.map((item) => {
-  //     console.log("Item: " + item.id)
-  //     const foundItem = calcProducts.find((prod) => { prod.id === item.id})
-  //     if (foundItem) {
-  //       noOfItems = noOfItems + 1 
-  //       console.log(noOfItems)
-  //     } else {
-  //     let newItem = {
-  //       ...item,
-  //       no: noOfItems
-  //     }
-  //     setCalcProducts(prev => [...prev, newItem])
-  //   }
-  //   })
-  //     console.log(calcProducts)
-  //   }
-  
-
-          // if (calcProducts.includes(item.id)) {
-        //   setNoOfItems(prev => prev + 1)
-        //   console.log("Items: " + noOfItems)
-        // } else {
-        //   let newItem = {
-        //   item: item,
-        //   number: noOfItems
-        // }
-      // setCalcProducts(prev => [...prev, newItem])
-      // console.log("New Item: " + newItem)
-      // console.log(calcProducts)
