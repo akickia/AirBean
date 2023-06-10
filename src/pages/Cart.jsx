@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import ProductCardCart from "../Components/ProductCardCart"
-import Login from "../Components/Login"
+import Login from "./Login"
 import { useNavigate } from "react-router-dom"
 
 export default function CartGuest() {
@@ -84,7 +84,7 @@ async function checkLoggedIn() {
   if (data.success) {
     navigate("/order/confirmation")
   } else {
-    navigate("/error")
+    navigate("/login")
   }
 }
 
@@ -94,7 +94,6 @@ function handleBtn() {
 
   return (
     <section className='order-view'>
-      <Login />
       <h1>Din beställning</h1>
       <section className='cart-container'>
         {productsEl}
