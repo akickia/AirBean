@@ -5,7 +5,7 @@ export default function Nav() {
   const navigate = useNavigate()
   return (
     <article className="navigation">
-      <button className="top-btn" onClick={() => {navigate("/menu")}}>X</button>
+      <button className="top-btn" onClick={() => {navigate(-1)}}>X</button>
       <nav>
         <ul>
           <Link to="/menu">Meny</Link>

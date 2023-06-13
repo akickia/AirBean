@@ -1,7 +1,11 @@
 import React from 'react'
+import Header from '../Components/Header'
 
 export default function OrderHistory() {
   return (
-    <div>OrderHistory</div>
+    <>
+    <Header></Header>
+    <article>OrderHistory</article>
+    </>
   )
 }

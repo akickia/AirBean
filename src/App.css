@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Work+Sans:wght@400;700&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -30,6 +30,24 @@ h2 {
   margin-bottom: .25rem;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 31.25rem;
+  margin: auto;
+}
+
+form input {
+  padding: .5rem;
+  margin: .5rem
+}
+
+hr {
+  margin: 3rem 0;
+  opacity: .6;
+
+}
+
 .start {
   background-color: #38846D;
   background-image: url("./assets/bg.svg");
@@ -52,6 +70,7 @@ h2 {
   text-align: center;  
   display: flex;
   flex-direction: column;
+  animation: slide .8s;
 }
 
 .navigation ul {
@@ -101,6 +120,10 @@ h2 {
   min-height: 9rem;
   position: relative;
 }
+
+footer {
+  transform: rotateZ(180deg);
+}
 .top-btn-right {
   background-color: black;
   overflow: hidden;
@@ -138,4 +161,62 @@ h2 {
 .cartCard {
   display: flex;
   justify-content: space-between;
+}
+
+.order-confirmation {
+  background-color: #E5674E;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.order-confirmation h5{
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 1.375rem;
+}
+
+.order-confirmation h5 span {
+  font-weight: 900;
+}
+
+.order-confirmation button{
+  font-size: 1.5rem;
+  border-radius: 50px;
+}
+
+.guest-card {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.guest-card div {
+  max-width: 12.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.guest-card div p {
+  padding: 0 1rem
+}
+
+.guest-order-total {
+  text-align: center;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25rem);
+
+  }
+  100% {
+    transform: translateX(0);
+  }
+
 }

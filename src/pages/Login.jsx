@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../Components/Header";
 
 export default function Login() {
   const navigate = useNavigate()
@@ -26,7 +27,6 @@ export default function Login() {
     }
   };
 
-  // ----- PROBLEM ATT HITTA USER ID FRÅN TOKEN! 
 
   const [textValue, setTextValue] = useState()
   const [pwValue, setPwValue] = useState()
@@ -35,6 +35,7 @@ export default function Login() {
   }
   return (
     <>
+    <Header></Header>
     <h1>Login</h1>
     <form onSubmit={(e) => {onSubmit(e)}}>
       <input type="text" onKeyUp={(e) => {setTextValue(e.target.value)}}></input>

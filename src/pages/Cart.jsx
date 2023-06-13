@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import ProductCardCart from "../Components/ProductCardCart"
-import Login from "./Login"
 import { useNavigate } from "react-router-dom"
+import Header from "../Components/Header"
 
-export default function CartGuest() {
+
+export default function Cart() {
   const navigate = useNavigate()
   const [products, setProducts] = useState([])
   const [calcProducts, setCalcProducts] = useState([])
@@ -82,9 +83,14 @@ async function checkLoggedIn() {
   })
   const data = await response.json();
   if (data.success) {
+    localStorage.setItem("items", "")
+    let message = data.message
+    localStorage.setItem("message", message)
     navigate("/order/confirmation")
   } else {
     navigate("/login")
+    localStorage.setItem("products", JSON.stringify(calcProducts))
+    localStorage.setItem("total", result)
   }
 }
 
@@ -93,6 +99,8 @@ function handleBtn() {
 }
 
   return (
+    <>
+      <Header />
     <section className='order-view'>
       <h1>Din beställning</h1>
       <section className='cart-container'>
@@ -107,5 +115,6 @@ function handleBtn() {
       </section>
       <button className='orderBtn' onClick={() => {handleBtn()}}>Take my money!</button>
     </section>
+    </>
   )
 }

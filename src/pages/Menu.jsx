@@ -5,11 +5,11 @@ import cartBtn from "../assets/cart.jpg"
 import { useNavigate } from "react-router-dom"
 
 
-
 export default function Menu() {
   const navigate = useNavigate()
   const [menu, setMenu] = useState()
-  const items = JSON.parse(localStorage.getItem("items"))
+  let items = localStorage.getItem("items")
+  items && JSON.parse(items)
   const [noProductsInCart, setNoProductsInCart] = useState(items ? items : 0)
 
   function itemsInCart() {
@@ -19,7 +19,7 @@ export default function Menu() {
     } else {
       setNoProductsInCart(1)
     }
-    localStorage.setItem("items", JSON.stringify(noProductsInCart +1))
+    localStorage.setItem("items", noProductsInCart +1)
   }
 
   async function fetchProducts() {
@@ -35,15 +35,18 @@ export default function Menu() {
 
 
   return (
-    <article className="products-container">
-      <header className="btns-container">
+    <>
+    <header className="btns-container">
          <button className="top-btn" onClick={() => {navigate("/nav")}}><img src={menuBtn} /></button>
          <button className="top-btn top-btn-right" onClick={() => {navigate("/order")}}><img src={cartBtn} /></button>{noProductsInCart ? <div className="cartNo">{noProductsInCart}</div> : ""}
       </header>
+    <article className="products-container">
+      
       <h1>Meny</h1>
       <section className="products">
       {menu && menu.map((product, i) => <ProductCard key={i} item={product} action={() => itemsInCart()} />)}
       </section>
     </article>
+    </>
   )
 }
