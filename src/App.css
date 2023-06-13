@@ -210,6 +210,20 @@ footer {
   text-align: center;
 }
 
+.about h1{
+  text-align: left;
+}
+
+.about section, .login, .error {
+  text-align: center;
+  padding: 1rem 0;
+  margin: auto
+}
+
+
+
+
+
 @keyframes slide {
   0% {
     transform: translateX(-25rem);

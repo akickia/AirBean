@@ -3,6 +3,7 @@ import ProductCard from "../Components/ProductCard"
 import menuBtn from "../assets/menu.jpg"
 import cartBtn from "../assets/cart.jpg"
 import { useNavigate } from "react-router-dom"
+import Footer from "../Components/Footer"
 
 
 export default function Menu() {
@@ -47,6 +48,7 @@ export default function Menu() {
       {menu && menu.map((product, i) => <ProductCard key={i} item={product} action={() => itemsInCart()} />)}
       </section>
     </article>
+    <Footer />
     </>
   )
 }

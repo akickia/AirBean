@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ProductCardCart from "../Components/ProductCardCart"
 import { useNavigate } from "react-router-dom"
 import Header from "../Components/Header"
+import Footer from "../Components/Footer"
 
 
 export default function Cart() {
@@ -101,7 +102,7 @@ function handleBtn() {
   return (
     <>
       <Header />
-    <section className='order-view'>
+    <article className='order-view'>
       <h1>Din beställning</h1>
       <section className='cart-container'>
         {productsEl}
@@ -114,7 +115,8 @@ function handleBtn() {
         <p>inkl moms + drönarleverans</p>
       </section>
       <button className='orderBtn' onClick={() => {handleBtn()}}>Take my money!</button>
-    </section>
+    </article>
+    <Footer />
     </>
   )
 }

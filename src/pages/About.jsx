@@ -7,7 +7,7 @@ export default function About() {
   return (
     <>
     <Header />
-      <article>
+      <article className='about'>
         <h1>Vårt kaffe</h1>
         <p><b>Pumpkin spice mug, barista cup, sit macchiato,  kopi-luwak, doppio, grounds dripper, crema, strong whipped, variety extra iced id lungo half and half mazagran. Pumpkin spice.</b></p>
         <p>Que dark fair trade, spoon decaffeinated, barista wings whipped, as rich aftertaste, con panna milk black, arabica white rich beans single shot extra affogato. So affogato macchiato sit extraction instant grinder seasonal organic, turkish single shot, single origin, and robusta strong to go so dripper. Viennese froth, grounds caramelization skinny aromatic cup kopi-luwak, fair trade flavour, frappuccino medium, café au lait flavour cultivar ut bar instant kopi-luwak.</p>
