@@ -4,7 +4,7 @@ import Header from "../Components/Header"
 import Footer from "../Components/Footer"
 
 
-export default function GuestOrder() {
+export default function GuestOrder( { close }) {
   const [calcProducts, setCalcProducts] = useState(JSON.parse(localStorage.getItem("products")))
   const result = localStorage.getItem("total")
   const [name, setName] = useState("")
@@ -53,10 +53,11 @@ export default function GuestOrder() {
 
   return (
     <>
-      <Header />
-    <article>
-
+      
+    <section className="popup">
+       <button className="top-btn" onClick={() => close(false)}>X</button>
        <section className='order-view'>
+       
         <h1>Skicka gästorder:</h1>
       <form>
         <input type="text" placeholder="Namn" onKeyUp={(e) => setName(e.target.value)}></input>
@@ -84,8 +85,7 @@ export default function GuestOrder() {
       </section>
     </section>
      
-    </article>
-    <Footer />
+    </section>
     </>
   )
 }

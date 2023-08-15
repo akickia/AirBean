@@ -10,8 +10,8 @@ export default function Nav() {
         <ul>
           <Link to="/menu">Meny</Link>
           <Link to="/about">Vårt kaffe</Link>
-          <Link to="/login">Min profil</Link>
-          <Link to="/user/orderhistory">Orderstatus</Link>
+          <Link to="/profile">Min profil</Link>
+          {/* <Link to="/order/confirmation">Orderstatus</Link> */}
         </ul>
       </nav>
     </article>

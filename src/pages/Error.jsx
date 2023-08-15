@@ -10,7 +10,7 @@ export default function Error() {
     <Header></Header>
     <article className="error">
       <h1>Nu blev något fel... </h1>
-      <button onClick={() => navigate(-1)}>Gå tillbaka</button>
+      <button onClick={() => navigate("/menu")}>Gå till meny</button>
     </article>
     <Footer />
     </>

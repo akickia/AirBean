@@ -18,7 +18,8 @@ p {
 
 article {
   min-height: 100vh;
-  padding: 0 2rem
+  padding: 0 2rem;
+  position: relative;
 }
 
 h1 {
@@ -218,6 +219,122 @@ footer {
   text-align: center;
   padding: 1rem 0;
   margin: auto
+}
+
+.popup {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  z-index: 50;
+  background-color:#F3E4E1;
+  min-height: 50vh;
+  border-radius: 5px;
+  padding: 2rem 1rem;
+  margin: 1rem auto;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 80%
+}
+
+.popup .top-btn {
+  margin-left: auto;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex button {
+  margin: .5rem
+}
+
+.profile .popup-card .hide {
+  display: none;
+}
+
+.profile-container {
+  background-color: black;
+}
+
+.myprofile {
+  text-align: center;
+  color: white
+}
+
+.order-history {
+  text-align: start;
+}
+
+.order-history hr {
+  margin: 1rem 0;
+  opacity: .2;
+}
+
+.order-history div {
+  color: gray;
+  display: flex;
+  justify-content: space-between;
+  line-height: normal;
+  margin: 0
+}
+
+.order-history div * {
+  margin: 0;
+  padding: 0
+}
+.signup {
+  border-radius: 5px;
+  padding: 2rem 1rem;
+  margin: 1rem auto;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.signup .circle {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.signup form label {
+  font-family: "Work sans";
+  font-size: .75rem;
+  text-align: start;
+
+}
+
+.signup form input {
+  margin: 0 0 .5rem 0;
+  background-color: transparent;
+  border: 1px solid black;
+  outline: 1px;
+  border-radius: 5px;
+  padding: 1rem
+}
+
+.signup form div {
+  display: flex;
+  padding: 1rem 0;
+  align-items: center;
+}
+.signup form input[type="radio"] {
+  margin: 0 .5rem 0 0
+}
+
+.signup .signup-btn {
+  color: white;
+  background-color: black;
+  border-radius: 50px;
+  width: 15.625rem;
+  font-size: 1.5rem;
 }
 
 

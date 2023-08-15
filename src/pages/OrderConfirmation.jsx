@@ -14,7 +14,7 @@ export default function OrderConfirmation() {
         <h1>Din beställning är på väg!</h1>
         <h5>{message}</h5>
       </div>
-      <button onClick={() => {navigate("/menu")}}>Ok, cool!</button>
+      <button onClick={() => {navigate("/profile")}}>Ok, cool!</button>
     </article>
   )
 }
