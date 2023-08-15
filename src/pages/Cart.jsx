@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ProductCardCart from "../Components/ProductCardCart"
 import { useNavigate } from "react-router-dom"
 import Header from "../Components/Header"
 import Footer from "../Components/Footer"
+import Popup from "../Components/Popup"
 
 
 export default function Cart() {
@@ -10,7 +11,8 @@ export default function Cart() {
   const [products, setProducts] = useState([])
   const [calcProducts, setCalcProducts] = useState([])
   const [result, setResult] = useState()
-  
+  const [showPopup, setShowPopup] = useState(false)
+
 
   async function fetchProducts() {
     let productsInCart = await fetch('http://localhost:8000/api/cart/order')
@@ -84,20 +86,18 @@ async function checkLoggedIn() {
   })
   const data = await response.json();
   if (data.success) {
+    setShowPopup(false)
     localStorage.setItem("items", "")
     let message = data.message
     localStorage.setItem("message", message)
     navigate("/order/confirmation")
   } else {
-    navigate("/login")
+    setShowPopup(true)
     localStorage.setItem("products", JSON.stringify(calcProducts))
     localStorage.setItem("total", result)
   }
 }
 
-function handleBtn() {
-  checkLoggedIn()
-}
 
   return (
     <>
@@ -114,7 +114,8 @@ function handleBtn() {
         </div>
         <p>inkl moms + drönarleverans</p>
       </section>
-      <button className='orderBtn' onClick={() => {handleBtn()}}>Take my money!</button>
+      <button className='orderBtn' onClick={() => {checkLoggedIn()}}>Take my money!</button>
+      {showPopup && <Popup state={true} action={checkLoggedIn} close={() => {setShowPopup()}}/> }
     </article>
     <Footer />
     </>
