@@ -7,7 +7,6 @@ export default function ProductCard({item, action}) {
     const productId = {
       id: item.id,
     }
-    console.log(productId)
     await fetch("http://localhost:8000/api/cart/add", {
       method: 'POST',
       headers: {

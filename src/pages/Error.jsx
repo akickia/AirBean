@@ -7,7 +7,7 @@ export default function Error() {
   const navigate = useNavigate()
   return (
     <>
-    <Header></Header>
+    <Header />
     <article className="error">
       <h1>Nu blev något fel... </h1>
       <button onClick={() => navigate("/menu")}>Gå till meny</button>

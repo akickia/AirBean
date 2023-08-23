@@ -9,26 +9,27 @@ import Footer from "../Components/Footer"
 export default function Menu() {
   const navigate = useNavigate()
   const [menu, setMenu] = useState()
+  const [showDisclamer, setShowDisclamer] = useState(true)
   let items = localStorage.getItem("items")
   items && JSON.parse(items)
-  const [noProductsInCart, setNoProductsInCart] = useState(items ? items : 0)
+  const [noProductsInCart, setNoProductsInCart] = useState(items ? parseInt(items) : 0)
 
+  //Set items in cart
   function itemsInCart() {
     if (noProductsInCart) {
       setNoProductsInCart(prev => prev + 1)
-      console.log(noProductsInCart)
     } else {
       setNoProductsInCart(1)
     }
     localStorage.setItem("items", noProductsInCart +1)
   }
 
+  //Get menu from server
   async function fetchProducts() {
     let products = await fetch('http://localhost:8000/api/beans')
     products = await products.json()
     setMenu(products.beans)
   }
-
 
   useEffect(() => {
     fetchProducts()
@@ -39,6 +40,10 @@ export default function Menu() {
     <>
     <header className="btns-container">
          <button className="top-btn" onClick={() => {navigate("/nav")}}><img src={menuBtn} /></button>
+         <div className='disclamer'><p><b>VIKTIG INFO!</b></p>
+    
+    {showDisclamer ? <div><p>Detta är enbart ett projekt för mina studier, ej ett riktigt företag. Använd inte dina personuppgifter. Skapa gärna ett fiktivt konto för att testa sidan. Inga ordrar skickas och ingenting skickas till mailen du anger, den behöver alltså inte finnas. Jag tar ej ansvar för att personuppgifter sparas korrekt!</p><button onClick={() => setShowDisclamer(false)}>Dölj</button></div> : <button onClick={() => setShowDisclamer(true)}>Visa</button>}
+    </div>
          <button className="top-btn top-btn-right" onClick={() => {navigate("/order")}}><img src={cartBtn} /></button>{noProductsInCart ? <div className="cartNo">{noProductsInCart}</div> : ""}
       </header>
     <article className="products-container">

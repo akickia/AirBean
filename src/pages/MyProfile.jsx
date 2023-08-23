@@ -10,12 +10,11 @@ import { LoggedInContext } from "../App";
 
 export default function MyProfile() {
   const [loggedIn] = useContext(LoggedInContext)
-  
   const [showPopup, setShowPopup] = useState(loggedIn)
-  const [username, setUsername] = useState()
-  const [usermail, setUsermail] = useState()
- 
- 
+  const [username, setUsername] = useState("")
+  const [usermail, setUsermail] = useState("")
+
+  //Get info from local storage
   async function fetchInfo() {
     if (loggedIn) {
       setUsername(localStorage.getItem("username"))
@@ -31,21 +30,23 @@ export default function MyProfile() {
     setShowPopup(loggedIn)
   }, [loggedIn])
 
+
   return (
     <>
     <section className="profile-container">
-      <Header></Header>
+      <Header />
         <article className="profile">
-        {showPopup ? 
-        <section className="myprofile">
+          <h1 style={{color: "white"}}>Min profil</h1>
+          {showPopup ? 
+          <section className="myprofile">
           <img src={profile}></img>
           <h2>{username}</h2>
           <p>{usermail}</p>
           <OrderHistory></OrderHistory>
-        </section> : <Popup state={false} close={() => {setShowPopup()}}/>}
-
+          </section> : 
+          <Popup state={false} close={() => {setShowPopup()}}/>}
         </article>
-      <Footer></Footer>
+      <Footer />
       </section>
     </>
   )

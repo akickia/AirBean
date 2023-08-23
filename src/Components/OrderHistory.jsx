@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 export default function OrderHistory() {
 const [order, setOrders] = useState()
+const [msg, setMsg] = useState()
+
+//Get order history from server if token and user ID is correct
   async function fetchProducts() {
-    
     const token = localStorage.getItem("token")
     const user = localStorage.getItem("userId")
     const userId = {
@@ -20,29 +22,18 @@ const [order, setOrders] = useState()
     const data = await response.json();
     const result = await data.orders
     if (data.success) {
-      console.log(result)
       setOrders(result)
-      console.log(order)
-    } else {
-      console.log(data)
+      setMsg(data.message)
     }
   }
 
-  function timeOfDelivery(date) {
-    const time = date.slice(11, 16)
-    return time
-  }
-
-  //Convert to time - how? 
-
+// Map out orders
  const ordersEl = order && order.map((item, i) => {
     return  <section key={i}><hr></hr><div><h4>Order nr {i+1}</h4><p>{item.date.slice(0, 10)}</p></div>
     <div><p>Total ordersumma</p>
     <p>{item.totalPricePerOrder} kr</p></div><div><p></p><p>{item.isDelivered ? "Levererad" : "Ej levererad"}</p></div></section>
-    // item.map((prod) => {
-    //   <p>prod.title</p>
-    // })
   }) 
+
   useEffect(() => {
     fetchProducts()
   }, [])
@@ -52,8 +43,8 @@ const [order, setOrders] = useState()
     <>
     <section className='order-history'>
       <h2>Orderhistorik</h2>
-
-      {ordersEl}
+      {ordersEl ? ordersEl : <p>Inga ordrar än</p>}
+    <p>{msg}</p>
     </section>
     </>
   )

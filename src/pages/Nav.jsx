@@ -11,7 +11,6 @@ export default function Nav() {
           <Link to="/menu">Meny</Link>
           <Link to="/about">Vårt kaffe</Link>
           <Link to="/profile">Min profil</Link>
-          {/* <Link to="/order/confirmation">Orderstatus</Link> */}
         </ul>
       </nav>
     </article>

@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import Nav from './pages/Nav'
 import Menu from './pages/Menu'
 import Cart from './pages/Cart'
@@ -16,7 +16,31 @@ import GuestOrder from './pages/GuestOrder'
 export const LoggedInContext = createContext();
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState();
+
+  async function checkToken() {
+    const token = localStorage.getItem("token")
+    const userId = localStorage.getItem("userId")
+    const response = await fetch('http://localhost:8000/api/user/checktoken', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+      body: JSON.stringify({ _id: userId })
+    });
+    const data = await response.json();
+    if (data.success) {
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false)
+    }
+  }
+
+  useEffect(() => {
+    checkToken()
+  }, [])
+
 
   return (
     <LoggedInContext.Provider value={[loggedIn, setLoggedIn]}>

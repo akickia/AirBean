@@ -122,9 +122,35 @@ hr {
   position: relative;
 }
 
-footer {
+footer.btns-container {
+  justify-content: center;
+  text-align: center;
   transform: rotateZ(180deg);
 }
+
+footer .footer {
+  transform: rotateZ(180deg);
+  max-width: 90%;
+  width: 100%;
+  margin: auto;
+}
+
+footer .logout {
+  height: 3.125rem;
+  margin: 1rem auto;
+  color: white;
+  background-color: black;
+}
+
+footer .info {
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: .5rem;
+  border-radius: .9375rem;
+  font-size: .75rem;
+}
+
+
 .top-btn-right {
   background-color: black;
   overflow: hidden;
@@ -262,7 +288,8 @@ footer {
 
 .myprofile {
   text-align: center;
-  color: white
+  color: white;
+  padding-bottom: 3rem
 }
 
 .order-history {
@@ -338,7 +365,14 @@ footer {
 }
 
 
-
+.disclamer {
+  background-color: #E5674E;
+  color: black;
+  padding: .5rem;
+  margin: 1rem;
+  max-width: 40rem;
+  width: 100%;
+}
 
 
 @keyframes slide {

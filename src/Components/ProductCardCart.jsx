@@ -10,7 +10,6 @@ export default function ProductCardCart({item, calcItems, updateCalcProduct}) {
     const productId = {
       id: item.id,
     }
-    console.log(productId)
     await fetch("http://localhost:8000/api/cart/add", {
       method: 'POST',
       headers: {
@@ -27,7 +26,6 @@ export default function ProductCardCart({item, calcItems, updateCalcProduct}) {
     const productId = {
       id: item.id,
     }
-    console.log(productId)
     await fetch("http://localhost:8000/api/cart/remove", {
       method: 'DELETE',
       headers: {

@@ -4,16 +4,18 @@ import { useNavigate } from "react-router-dom"
 import Header from "../Components/Header"
 import Footer from "../Components/Footer"
 import Popup from "../Components/Popup"
+import { LoggedInContext } from "../App"
 
 
 export default function Cart() {
   const navigate = useNavigate()
+  const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
   const [products, setProducts] = useState([])
   const [calcProducts, setCalcProducts] = useState([])
   const [result, setResult] = useState()
   const [showPopup, setShowPopup] = useState(false)
 
-
+//Get products in cart
   async function fetchProducts() {
     let productsInCart = await fetch('http://localhost:8000/api/cart/order')
     productsInCart = await productsInCart.json()
@@ -26,6 +28,7 @@ export default function Cart() {
   })
 
   
+  //Calculate and change number of products in cart
   function calcItems() {
     const updatedCalcProducts = products && products.reduce((acc, item) => {
       const foundItem = acc.find((prod) => prod.id === item.id);
@@ -49,6 +52,7 @@ export default function Cart() {
     setCalcProducts(updatedCalcProducts);
   }
 
+  //Calculate sum of products in cart
   function calculateSum() {
     let sum = []
     calcProducts.map((item) => {
@@ -60,6 +64,7 @@ export default function Cart() {
 
 useEffect(() => {
   fetchProducts()
+  
 }, [])
 
 useEffect(() => {
@@ -70,54 +75,63 @@ useEffect(() => {
   calculateSum()
 }, [calcProducts])
 
-async function checkLoggedIn() {
-  const token = localStorage.getItem("token")
-  const user = localStorage.getItem("userId")
-  const userId = {
-    _id: user,
-  }
-  const response = await fetch("http://localhost:8000/api/cart/sendorder", {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': token
-    },
-    body: JSON.stringify(userId)
-  })
-  const data = await response.json();
-  if (data.success) {
+
+//If logged in - send order, if not - open popup
+function checkLoggedIn() {
+  if (loggedIn) {
     setShowPopup(false)
-    localStorage.setItem("items", "")
-    let message = data.message
-    localStorage.setItem("message", message)
-    navigate("/order/confirmation")
   } else {
     setShowPopup(true)
-    localStorage.setItem("products", JSON.stringify(calcProducts))
-    localStorage.setItem("total", result)
-  }
-}
+  }}
 
+  async function sendOrder() {
+    checkLoggedIn()
+    const token = localStorage.getItem("token")
+    const user = localStorage.getItem("userId")
+    const userId = {
+    _id: user,
+    }
+    const response = await fetch("http://localhost:8000/api/cart/sendorder", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+      body: JSON.stringify(userId)
+    })
+    const data = await response.json();
+    if (data.success) {
+      setShowPopup(false)
+      localStorage.setItem("items", "")
+      let message = data.message
+      localStorage.setItem("message", message)
+      navigate("/order/confirmation")
+    } else {
+      setShowPopup(true)
+      localStorage.setItem("products", JSON.stringify(calcProducts))
+      localStorage.setItem("total", result)
+    }
+  }
 
   return (
     <>
       <Header />
-    <article className='order-view'>
-      <h1>Din beställning</h1>
-      <section className='cart-container'>
-        {productsEl}
-      </section>
-      <section className='order-total'>
-        <div>
-          <h2>Total</h2>
-          <h2>{result}</h2>
-        </div>
-        <p>inkl moms + drönarleverans</p>
-      </section>
-      <button className='orderBtn' onClick={() => {checkLoggedIn()}}>Take my money!</button>
-      {showPopup && <Popup state={true} action={checkLoggedIn} close={() => {setShowPopup()}}/> }
-    </article>
-    <Footer />
+      <article className='order-view'>
+        <h1>Din beställning</h1>
+        <section className='cart-container'>
+          {productsEl}
+        </section>
+        <section className='order-total'>
+          <div>
+            <h2>Total</h2>
+            <h2>{result}</h2>
+          </div>
+          <p>inkl moms + drönarleverans</p>
+        </section>
+        <button className='orderBtn' onClick={() => {sendOrder()}}>Take my money!</button>
+        {showPopup && <Popup state={true} sendOrder={sendOrder} close={() => {setShowPopup()}}/> }
+      </article>
+      <Footer />
     </>
   )
 }

@@ -8,7 +8,7 @@ export default function OrderConfirmation() {
   const navigate = useNavigate()
   return (
     <article className='order-confirmation'>
-    <p><small>Ordernummer <b>#12DV23F</b></small></p>  
+      <p><small>Ordernummer <b>#12DV23F</b></small></p>  
       <img src={drone} />
       <div>
         <h1>Din beställning är på väg!</h1>
