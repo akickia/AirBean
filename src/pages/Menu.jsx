@@ -42,7 +42,7 @@ export default function Menu() {
          <button className="top-btn" onClick={() => {navigate("/nav")}}><img src={menuBtn} /></button>
          <div className='disclamer'><p><b>VIKTIG INFO!</b></p>
     
-    {showDisclamer ? <div><p>Detta är enbart ett projekt för mina studier, ej ett riktigt företag. Använd inte dina personuppgifter. Skapa gärna ett fiktivt konto för att testa sidan. Inga ordrar skickas och ingenting skickas till mailen du anger, den behöver alltså inte finnas. Jag tar ej ansvar för att personuppgifter sparas korrekt!</p><button onClick={() => setShowDisclamer(false)}>Dölj</button></div> : <button onClick={() => setShowDisclamer(true)}>Visa</button>}
+    {showDisclamer ? <div><p>Detta är enbart ett projekt för mina studier, ej ett riktigt företag. Använd inte dina personuppgifter. Server är ej online. Inga ordrar skickas men info du anger kan sparas i localStorage.</p><button onClick={() => setShowDisclamer(false)}>Dölj</button></div> : <button onClick={() => setShowDisclamer(true)}>Visa</button>}
     </div>
          <button className="top-btn top-btn-right" onClick={() => {navigate("/order")}}><img src={cartBtn} /></button>{noProductsInCart ? <div className="cartNo">{noProductsInCart}</div> : ""}
       </header>
