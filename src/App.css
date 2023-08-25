@@ -18,7 +18,7 @@ p {
 
 article {
   min-height: 100vh;
-  padding: 0 2rem;
+  padding: 0 .5rem;
   position: relative;
 }
 
@@ -58,6 +58,11 @@ hr {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.products {
+  max-width: 750px;
+  margin: auto
 }
 
 .product-text {
@@ -150,16 +155,11 @@ footer .info {
   font-size: .75rem;
 }
 
-/* 
-.top-btn-right {
-  background-color: black;
-  color: white;
-} */
-
-.top-btn-add {
+.btn-add {
   font-size: 1.5rem;
-  
   align-self: center;
+  margin: 0;
+  margin-right: 1rem;
 }
 
 .products {
@@ -247,8 +247,8 @@ footer .info {
 .popup {
   position: absolute;
   top: 5%;
-  left: 10%;
-  right: 10%;
+  left: 0;
+  right: 0;
   z-index: 50;
   background-color:#F3E4E1;
   min-height: 50vh;
@@ -257,7 +257,8 @@ footer .info {
   margin: 1rem auto;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 80%
+  max-width: 600px;
+  width: 90%
 }
 
 .popup .top-btn {
@@ -363,27 +364,43 @@ footer .info {
 
 
 .disclamer {
-  background-color: #E5674E;
+  background-color: rgba(229, 103, 78, 0.95);
   color: black;
   padding: .5rem;
-  margin: 1rem;
+  margin: 1rem auto;
   max-width: 40rem;
   width: 100%;
   font-size: .8em;
+  font-weight: 700;
 }
 
-.signup .disclamer {
-  margin: 0
+.move {
+  animation: slideAddBtn .5s linear 1
 }
 
+
+
+
+@media screen and (min-width: 500px) {
+  .popup {
+    width: 75%
+  }
+}
 
 @keyframes slide {
   0% {
     transform: translateX(-25rem);
-
   }
   100% {
     transform: translateX(0);
   }
+}
 
+@keyframes slideAddBtn {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(700px) translateY(-1000px);
+  }
 }

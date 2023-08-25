@@ -84,10 +84,9 @@ const handleLogin = async (username, password) => {
         <div className='circle'><img src={logo}></img></div>
         <h1>Välkommen till AirBean-familjen!</h1>
         <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
-        <p className='disclamer'><b>OBS! Detta är ett studentprojekt, ej ett riktigt företag. Använd inte dina personuppgifter utan skapa endast ett fiktivt konto. Inga ordrar skickas och ingenting skickas till mailen du anger, den behöver alltså inte existera. Uppgifter du anger kan sparas i localstorage.</b></p>
         <form>
-          <label>Namn</label>
-          <input type='text' placeholder='Sixten Kaffelöver' onKeyUp={(e) => {setNewUsername(e.target.value)}}></input>
+          <label>Användarnamn</label>
+          <input type='text' placeholder='kaffelöver75' onKeyUp={(e) => {setNewUsername(e.target.value)}}></input>
           <label>Epost</label>
           <input type="email" placeholder='sixten.kaffelover@zocom.se' onKeyUp={(e) => {setNewUserMail(e.target.value)}}></input>
           <div>
@@ -96,6 +95,7 @@ const handleLogin = async (username, password) => {
           </div>
         </form>
         {errorMsg && <p style={{color: "red"}}>Något blev fel, se till att du fyller i alla fält korrekt och försök igen.</p>}
+        <p className='disclamer'>OBS! Detta är ett studentprojekt, ej ett riktigt företag. Använd inte dina personuppgifter utan skapa endast ett fiktivt konto. Inga ordrar skickas och ingenting skickas till mailen du anger, den behöver alltså inte existera. Uppgifter du anger kan sparas i localstorage.</p>
         <button className='signup-btn' onClick={() => {setShowPopup(true)}}>Brew me a cup!</button>
         {showPopup && <section className='popup'>
         <button className="top-btn" onClick={() => {setShowPopup(false)}}>X</button>

@@ -27,8 +27,7 @@ export default function Login({ sendOrder, close }) {
       setLoggedIn(true)
       setErrorMsg(false)
       sendOrder()
-    } else {
-      const error = data.error; 
+    } else { 
       localStorage.setItem("token", "")
       setErrorMsg(true)
     }
