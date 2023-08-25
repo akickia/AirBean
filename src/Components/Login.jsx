@@ -40,8 +40,8 @@ export default function Login({ sendOrder, close }) {
         <button className="top-btn" onClick={() => {close(false)}}>X</button>
         <h1>Logga in</h1>
         <form>
-          <input type="text" onKeyUp={(e) => {setTextValue(e.target.value)}}></input>
-          <input type="password" onKeyUp={(e) => {setPwValue(e.target.value)}}></input>       
+          <input type="text" placeholder="användarnamn" onKeyUp={(e) => {setTextValue(e.target.value)}}></input>
+          <input type="password" placeholder="lösenord" onKeyUp={(e) => {setPwValue(e.target.value)}}></input>       
         </form>
         <button onClick={() => {handleLogin(textValue, pwValue)}}>Login</button>
         {errorMsg && <p>Tyvärr, fel användaruppgifter. Försök igen.</p>}
