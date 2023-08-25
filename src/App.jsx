@@ -17,11 +17,12 @@ export const LoggedInContext = createContext();
 
 function App() {
   const [loggedIn, setLoggedIn] = useState();
+  const URL = "https://airbeanprojectbackend.onrender.com/api/"
 
   async function checkToken() {
     const token = localStorage.getItem("token")
     const userId = localStorage.getItem("userId")
-    const response = await fetch('http://localhost:8000/api/user/checktoken', {
+    const response = await fetch(URL + 'user/checktoken', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +44,7 @@ function App() {
 
 
   return (
-    <LoggedInContext.Provider value={[loggedIn, setLoggedIn]}>
+    <LoggedInContext.Provider value={[loggedIn, setLoggedIn, URL]}>
       <BrowserRouter>
         <Routes>
           

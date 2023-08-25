@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ProductCard from "../Components/ProductCard"
 import menuBtn from "../assets/menu.jpg"
 import cartBtn from "../assets/cart.jpg"
 import { useNavigate } from "react-router-dom"
 import Footer from "../Components/Footer"
+import { LoggedInContext } from "../App"
 
 
 export default function Menu() {
+  const URL = useContext(LoggedInContext)
   const navigate = useNavigate()
   const [menu, setMenu] = useState()
   const [showDisclamer, setShowDisclamer] = useState(true)
@@ -26,7 +28,7 @@ export default function Menu() {
 
   //Get menu from server
   async function fetchProducts() {
-    let products = await fetch('http://localhost:8000/api/beans')
+    let products = await fetch(URL + 'beans')
     products = await products.json()
     setMenu(products.beans)
   }
