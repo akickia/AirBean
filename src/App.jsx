@@ -17,7 +17,7 @@ export const LoggedInContext = createContext();
 
 function App() {
   const [loggedIn, setLoggedIn] = useState();
-  const URL = "https://airbeanprojectbackend.onrender.com/api/"
+  const URL = "https://airbeanprojectbackend.onrender.com/"
 
   async function checkToken() {
     const token = localStorage.getItem("token")
