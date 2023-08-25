@@ -14,6 +14,7 @@ export default function Cart() {
   const [calcProducts, setCalcProducts] = useState([])
   const [result, setResult] = useState()
   const [showPopup, setShowPopup] = useState(false)
+  const [msg, setMsg] = useState(false)
 
 //Get products in cart
   async function fetchProducts() {
@@ -84,6 +85,15 @@ function checkLoggedIn() {
     setShowPopup(true)
   }}
 
+  function checkTotal() {
+    if (result > 0) {
+      setMsg(false)
+      sendOrder()
+    } else {
+      setMsg(true)
+    }
+  }
+
   async function sendOrder() {
     checkLoggedIn()
     const token = localStorage.getItem("token")
@@ -128,7 +138,8 @@ function checkLoggedIn() {
           </div>
           <p>inkl moms + drönarleverans</p>
         </section>
-        <button className='orderBtn' onClick={() => {sendOrder()}}>Take my money!</button>
+        <button className='orderBtn' onClick={() => {checkTotal()}}>Take my money!</button>
+        {msg && <p>Du har inget i din varukorg. Gå till menyn för att lägga till något.</p>}
         {showPopup && <Popup state={true} sendOrder={sendOrder} close={() => {setShowPopup()}}/> }
       </article>
       <Footer />

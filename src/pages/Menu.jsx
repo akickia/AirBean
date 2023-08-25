@@ -1,18 +1,17 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import ProductCard from "../Components/ProductCard"
 import menuBtn from "../assets/menu.jpg"
-import cartBtn from "../assets/cart.jpg"
+import cartBtn from "../assets/cart.svg"
 import { useNavigate } from "react-router-dom"
 import Footer from "../Components/Footer"
-import { LoggedInContext } from "../App"
+
 
 
 export default function Menu() {
   const navigate = useNavigate()
   const [menu, setMenu] = useState()
   const [showDisclamer, setShowDisclamer] = useState(true)
-  let items = localStorage.getItem("items")
-  items && JSON.parse(items)
+  const [items, setItems] = useState(localStorage.getItem("items"))
   const [noProductsInCart, setNoProductsInCart] = useState(items ? parseInt(items) : 0)
 
   //Set items in cart
@@ -22,7 +21,6 @@ export default function Menu() {
     } else {
       setNoProductsInCart(1)
     }
-    localStorage.setItem("items", noProductsInCart +1)
   }
 
   //Get menu from server
@@ -36,6 +34,10 @@ export default function Menu() {
     fetchProducts()
   }, [])
 
+  useEffect(() => {
+    localStorage.setItem("items", noProductsInCart)
+  }, [noProductsInCart])
+
 
   return (
     <>
@@ -43,7 +45,7 @@ export default function Menu() {
          <button className="top-btn" onClick={() => {navigate("/nav")}}><img src={menuBtn} /></button>
          <div className='disclamer'><p><b>VIKTIG INFO!</b></p>
     
-    {showDisclamer ? <div><p>Detta är enbart ett projekt för mina studier, ej ett riktigt företag. Använd inte dina personuppgifter. Server är ej online. Inga ordrar skickas men info du anger kan sparas i localStorage.</p><button onClick={() => setShowDisclamer(false)}>Dölj</button></div> : <button onClick={() => setShowDisclamer(true)}>Visa</button>}
+    {showDisclamer ? <div><p>Detta är ett studentprojekt, ej ett riktigt företag. Använd inte dina personuppgifter! Inga ordrar skickas men info du anger kan sparas i localStorage.</p><button onClick={() => setShowDisclamer(false)}>Dölj</button></div> : <button onClick={() => setShowDisclamer(true)}>Visa</button>}
     </div>
          <button className="top-btn top-btn-right" onClick={() => {navigate("/order")}}><img src={cartBtn} /></button>{noProductsInCart ? <div className="cartNo">{noProductsInCart}</div> : ""}
       </header>

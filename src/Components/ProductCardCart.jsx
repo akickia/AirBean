@@ -5,6 +5,8 @@ import { useState } from "react"
 
 export default function ProductCardCart({item, calcItems, updateCalcProduct}) {
   const [noOfItems, setNoOfItems] = useState(item.no)
+  let items = localStorage.getItem("items")
+  items = parseInt(items)
 
   async function addToCart(item) {
     const productId = {
@@ -18,7 +20,8 @@ export default function ProductCardCart({item, calcItems, updateCalcProduct}) {
       body: JSON.stringify(productId)
     })
     setNoOfItems(prev => prev + 1)
-    updateCalcProduct(item.id, noOfItems + 1)
+    localStorage.setItem("items", items +1)
+    updateCalcProduct(item.id, noOfItems +1)
 
   }
 
@@ -34,6 +37,7 @@ export default function ProductCardCart({item, calcItems, updateCalcProduct}) {
       body: JSON.stringify(productId)
     })
     setNoOfItems(prev => prev -1)
+    localStorage.setItem("items", items -1)
     updateCalcProduct(item.id, noOfItems -1)
 
   }

@@ -80,10 +80,11 @@ const handleLogin = async (username, password) => {
     <>
       <article className='signup popup'>
       <button className="top-btn" onClick={() => {close(false)}}>X</button>
-        <p className='disclamer'><b>OBS! Detta är enbart ett projekt för mina studier, ej ett riktigt företag. Använd inte dina personuppgifter utan skapa endast ett fiktivt konto. Inga ordrar skickas och ingenting skickas till mailen du anger, den behöver alltså inte finnas. Jag tar ej ansvar för att personuppgifter sparas korrekt!</b></p>
+        
         <div className='circle'><img src={logo}></img></div>
         <h1>Välkommen till AirBean-familjen!</h1>
         <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
+        <p className='disclamer'><b>OBS! Detta är ett studentprojekt, ej ett riktigt företag. Använd inte dina personuppgifter utan skapa endast ett fiktivt konto. Inga ordrar skickas och ingenting skickas till mailen du anger, den behöver alltså inte existera. Uppgifter du anger kan sparas i localstorage.</b></p>
         <form>
           <label>Namn</label>
           <input type='text' placeholder='Sixten Kaffelöver' onKeyUp={(e) => {setNewUsername(e.target.value)}}></input>

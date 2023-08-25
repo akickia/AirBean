@@ -30,7 +30,7 @@ const [msg, setMsg] = useState()
 // Map out orders
  const ordersEl = order && order.map((item, i) => {
     return  <section key={i}><hr></hr><div><h4>Order nr {i+1}</h4><p>{item.date.slice(0, 10)}</p></div>
-    <div><p>Total ordersumma</p>
+    <div><p>Ordersumma</p>
     <p>{item.totalPricePerOrder} kr</p></div><div><p></p><p>{item.isDelivered ? "Levererad" : "Ej levererad"}</p></div></section>
   }) 
 

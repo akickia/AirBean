@@ -11,7 +11,7 @@ export default function Header() {
     <div className='disclamer'>
       <p><b>VIKTIG INFO!</b></p>
     
-    {showDisclamer ? <div><p>Detta är enbart ett projekt för mina studier, ej ett riktigt företag. Använd inte dina personuppgifter. Server är ej online. Inga ordrar skickas men info du anger kan sparas i localStorage.</p><button onClick={() => setShowDisclamer(false)}>Dölj</button></div> : <button onClick={() => setShowDisclamer(true)}>Visa</button>}
+    {showDisclamer ? <div><p>Detta är ett studentprojekt, ej ett riktigt företag. Använd inte dina personuppgifter! Inga ordrar skickas men info du anger kan sparas i localStorage.</p><button onClick={() => setShowDisclamer(false)}>Dölj</button></div> : <button onClick={() => setShowDisclamer(true)}>Visa</button>}
     </div>
     <div></div>
  </header>

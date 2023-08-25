@@ -150,18 +150,15 @@ footer .info {
   font-size: .75rem;
 }
 
-
+/* 
 .top-btn-right {
   background-color: black;
-  overflow: hidden;
   color: white;
-}
+} */
 
 .top-btn-add {
   font-size: 1.5rem;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
+  
   align-self: center;
 }
 
@@ -372,6 +369,11 @@ footer .info {
   margin: 1rem;
   max-width: 40rem;
   width: 100%;
+  font-size: .8em;
+}
+
+.signup .disclamer {
+  margin: 0
 }
 
 
