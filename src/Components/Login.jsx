@@ -9,7 +9,7 @@ export default function Login({ sendOrder, close }) {
 
   //Check login and collect user details
   const handleLogin = async (username, password) => {
-    const response = await fetch('http://localhost:8000/api/user/login', {
+    const response = await fetch('https://airbeanprojectbackend.onrender.com/api/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -11,7 +11,7 @@ const [msg, setMsg] = useState()
     const userId = {
       _id: user,
     }
-    const response = await fetch("http://localhost:8000/api/user/orderhistory", {
+    const response = await fetch("https://airbeanprojectbackend.onrender.com/api/user/orderhistory", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

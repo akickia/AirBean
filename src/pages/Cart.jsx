@@ -17,7 +17,7 @@ export default function Cart() {
 
 //Get products in cart
   async function fetchProducts() {
-    let productsInCart = await fetch('http://localhost:8000/api/cart/order')
+    let productsInCart = await fetch('https://airbeanprojectbackend.onrender.com/api/cart/order')
     productsInCart = await productsInCart.json()
     productsInCart =productsInCart.cart
     setProducts(productsInCart)
@@ -91,7 +91,7 @@ function checkLoggedIn() {
     const userId = {
     _id: user,
     }
-    const response = await fetch("http://localhost:8000/api/cart/sendorder", {
+    const response = await fetch("https://airbeanprojectbackend.onrender.com/api/cart/sendorder", {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

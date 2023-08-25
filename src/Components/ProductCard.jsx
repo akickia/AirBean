@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 
 
 export default function ProductCard({item, action}) {
@@ -7,7 +7,7 @@ export default function ProductCard({item, action}) {
     const productId = {
       id: item.id,
     }
-    await fetch("http://localhost:8000/api/cart/add", {
+    await fetch("https://airbeanprojectbackend.onrender.com/api/cart/add", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

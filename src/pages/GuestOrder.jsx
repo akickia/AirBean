@@ -22,7 +22,7 @@ export default function GuestOrder( { close }) {
         zipcode: zipcode,
         city: city}
     }
-    const response = await fetch("http://localhost:8000/api/cart/sendguestorder", {
+    const response = await fetch("https://airbeanprojectbackend.onrender.com/api/cart/sendguestorder", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

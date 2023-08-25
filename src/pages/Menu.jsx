@@ -8,7 +8,6 @@ import { LoggedInContext } from "../App"
 
 
 export default function Menu() {
-  const URL = useContext(LoggedInContext)
   const navigate = useNavigate()
   const [menu, setMenu] = useState()
   const [showDisclamer, setShowDisclamer] = useState(true)
@@ -28,7 +27,7 @@ export default function Menu() {
 
   //Get menu from server
   async function fetchProducts() {
-    let products = await fetch(URL + 'beans')
+    let products = await fetch('https://airbeanprojectbackend.onrender.com/api/beans')
     products = await products.json()
     setMenu(products.beans)
   }

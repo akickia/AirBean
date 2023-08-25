@@ -10,7 +10,7 @@ export default function ProductCardCart({item, calcItems, updateCalcProduct}) {
     const productId = {
       id: item.id,
     }
-    await fetch("http://localhost:8000/api/cart/add", {
+    await fetch("https://airbeanprojectbackend.onrender.com/api/cart/add", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export default function ProductCardCart({item, calcItems, updateCalcProduct}) {
     const productId = {
       id: item.id,
     }
-    await fetch("http://localhost:8000/api/cart/remove", {
+    await fetch("https://airbeanprojectbackend.onrender.com/api/cart/remove", {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
